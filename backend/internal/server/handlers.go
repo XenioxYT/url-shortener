@@ -6,9 +6,9 @@ import (
     "net/http"
 
     "github.com/gin-gonic/gin"
-    "github.com/xenioxyt/url-shortener/internal/auth"
-    "github.com/xenioxyt/url-shortener/internal/database"
-    "github.com/xenioxyt/url-shortener/internal/models"
+    "github.com/xenioxyt/url-shortener/backend/internal/auth"
+    "github.com/xenioxyt/url-shortener/backend/internal/database"
+    "github.com/xenioxyt/url-shortener/backend/internal/models"
 )
 
 type LoginRequest struct {
