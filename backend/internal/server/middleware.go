@@ -4,7 +4,7 @@ import (
     "strings"
 
     "github.com/gin-gonic/gin"
-    "github.com/xenioxyt/url-shortener/internal/auth"
+    "github.com/xenioxyt/url-shortener/backend/internal/auth"
 )
 
 func AuthMiddleware() gin.HandlerFunc {
