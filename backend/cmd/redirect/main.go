@@ -6,8 +6,8 @@ import (
     "os"
 
     "github.com/gin-gonic/gin"
-    "github.com/xenioxyt/url-shortener/internal/database"
-    "github.com/xenioxyt/url-shortener/internal/models"
+    "github.com/xenioxyt/url-shortener/backend/internal/database"
+    "github.com/xenioxyt/url-shortener/backend/internal/models"
 )
 
 func handleRedirect(c *gin.Context) {
