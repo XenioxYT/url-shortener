@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: urlshortener
+      POSTGRES_PASSWORD: urlshortener
+      POSTGRES_DB: urlshortener
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    command: /api
+    environment:
+      DB_HOST: postgres
+      DB_USER: urlshortener
+      DB_PASSWORD: urlshortener
+      DB_NAME: urlshortener
+      DB_PORT: 5432
+      JWT_SECRET: your-secret-key
+      API_PORT: 8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  redirect:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    command: /redirect
+    environment:
+      DB_HOST: postgres
+      DB_USER: urlshortener
+      DB_PASSWORD: urlshortener
+      DB_NAME: urlshortener
+      DB_PORT: 5432
+      REDIRECT_PORT: 8081
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data: 
