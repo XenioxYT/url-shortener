@@ -71,9 +71,14 @@ func Login(c *gin.Context) {
 }
 
 func CreateShortLink(c *gin.Context) {
+    body, _ := io.ReadAll(c.Request.Body)
+    log.Printf("Received request body: %s", string(body))
+    c.Request.Body = io.NopCloser(bytes.NewBuffer(body))
+
     userID := c.GetUint("user_id")
     var req CreateLinkRequest
     if err := c.ShouldBindJSON(&req); err != nil {
+        log.Printf("Error binding JSON: %v", err)
         c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
         return
     }
