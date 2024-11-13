@@ -26,3 +26,6 @@ go.work
 .vscode/
 *.swp
 *.swo
+
+# node_modules
+frontend/node_modules/
