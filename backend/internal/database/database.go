@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/xenioxyt/url-shortener/internal/models"
+	"github.com/xenioxyt/url-shortener/backend/internal/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
