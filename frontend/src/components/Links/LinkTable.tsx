@@ -58,7 +58,7 @@ export const LinkTable: React.FC = () => {
           {links?.map((link: ShortLink) => (
             <TableRow key={link.id}>
               <TableCell>
-                <a href={`http://localhost:8083/${link.shortCode}`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://sml.xeniox.tv/${link.shortCode}`} target="_blank" rel="noopener noreferrer">
                   {link.shortCode}
                 </a>
               </TableCell>
