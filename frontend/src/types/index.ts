@@ -19,6 +19,7 @@ export interface ClickEvent {
   ipAddress: string;
   userAgent: string;
   referer: string;
+  timestamp: string;
   createdAt: string;
 }
 
