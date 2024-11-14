@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { ShortLink, CreateLinkResponse } from '../types';
+import { ShortLink, CreateLinkResponse, ClickEvent } from '../types';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8082',
+  baseURL: process.env.REACT_APP_API_URL,
+  withCredentials: true
 });
 
 api.interceptors.request.use((config) => {
@@ -80,6 +81,11 @@ export const linkService = {
 
   getLinkStats: async (id: number) => {
     const response = await api.get(`/api/links/${id}/stats`);
+    return response.data;
+  },
+
+  getAllClicks: async (): Promise<ClickEvent[]> => {
+    const response = await api.get<ClickEvent[]>('/api/clicks');
     return response.data;
   },
 };
