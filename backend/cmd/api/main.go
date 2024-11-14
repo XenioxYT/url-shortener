@@ -17,9 +17,10 @@ func main() {
 
     // CORS middleware
     r.Use(func(c *gin.Context) {
-        c.Header("Access-Control-Allow-Origin", "*")
+        c.Header("Access-Control-Allow-Origin", "https://admin.xeniox.tv")
+        c.Header("Access-Control-Allow-Credentials", "true")
         c.Header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-        c.Header("Access-Control-Allow-Headers", "Origin, Content-Type, Authorization")
+        c.Header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
         
         if c.Request.Method == "OPTIONS" {
             c.AbortWithStatus(204)
@@ -41,6 +42,7 @@ func main() {
         protected.GET("/links", server.GetUserLinks)
         protected.PUT("/links/:id/toggle", server.ToggleLink)
         protected.GET("/links/:id/stats", server.GetLinkStats)
+        protected.GET("/clicks", server.GetAllClicks)
     }
 
     port := os.Getenv("API_PORT")
