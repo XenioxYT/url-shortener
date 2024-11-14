@@ -152,4 +152,19 @@ func GetLinkStats(c *gin.Context) {
     }
 
     c.JSON(http.StatusOK, stats)
+}
+
+func GetAllClicks(c *gin.Context) {
+    userID := c.GetUint("user_id")
+    
+    var clicks []models.ClickEvent
+    if err := database.DB.
+        Joins("JOIN short_links ON click_events.link_id = short_links.id").
+        Where("short_links.user_id = ?", userID).
+        Find(&clicks).Error; err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch clicks"})
+        return
+    }
+    
+    c.JSON(http.StatusOK, clicks)
 } 
